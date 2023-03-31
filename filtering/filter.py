@@ -16,10 +16,10 @@ import sys
 #from IPython.display import display
 
 
-def prepare(source_file, target_file, source_lang, target_lang, lower=False):
+def prepare(source_file, target_file, source_lang, target_lang, lower=True):
     
-    df_source = pd.read_csv(source_file, names=['Source'], sep="\n", quoting=csv.QUOTE_NONE, skip_blank_lines=False, on_bad_lines="skip")
-    df_target = pd.read_csv(target_file, names=['Target'], sep="\n", quoting=csv.QUOTE_NONE, skip_blank_lines=False, on_bad_lines="skip")
+    df_source = pd.read_csv(source_file, names=['Source'],  quoting=csv.QUOTE_NONE, skip_blank_lines=False, on_bad_lines="skip")
+    df_target = pd.read_csv(target_file, names=['Target'],  quoting=csv.QUOTE_NONE, skip_blank_lines=False, on_bad_lines="skip")
     df = pd.concat([df_source, df_target], axis=1)  # Join the two dataframes along columns
     print("Dataframe shape (rows, columns):", df.shape)
 
@@ -131,4 +131,4 @@ target_lang = sys.argv[4]    # target language
 
 # Run the prepare() function
 # Data will be true-case; change to True to lower-case
-prepare(source_file, target_file, source_lang, target_lang, lower=False)
+prepare(source_file, target_file, source_lang, target_lang, lower=True)
